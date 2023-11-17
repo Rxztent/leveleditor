@@ -19,6 +19,7 @@ function placeRandomFruit() {
     category: 'apple',
     type: 0
   });
+  print("attempt to spawn apple")
 }
 
 const isProd = true;
