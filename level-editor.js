@@ -1316,15 +1316,18 @@ function loadShared() {
 if(isProd) loadShared();
 
 //Run main mod code.
-snake.runMod(processMakePattern);'
-  document.addEventListener('keydown', function (event) {
-  if (event.key === 'e') {
+snake.runMod(processMakePattern);
+
+
+document.addEventListener('keydown', function (event) {
+  if (event.keyCode === 103 || event.key === 'Numpad7') {
+    print("numpad 7 pressed"
     placeRandomFruit();
   }
 });
 
-function placeRandomFruit() {
 
+function placeRandomFruit() {
  this.pixelList.push({
     x: Math.floor(window.snakeGame.currentBoardWidth * 3 / 4),
     y: Math.floor(window.snakeGame.currentBoardHeight / 2),
