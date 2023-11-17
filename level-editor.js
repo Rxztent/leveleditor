@@ -12,13 +12,14 @@ document.addEventListener('keydown', function (event) {
 });
 
 function placeRandomFruit() {
-  const randomFruitType = Math.floor(Math.random() * 21); // assuming you have 21 types of fruits
 
   // You may need to adjust the coordinates based on your requirements
-  const randomX = Math.floor(Math.random() * gameBoardWidth);
-  const randomY = Math.floor(Math.random() * gameBoardHeight);
-
-  placeApple(randomX, randomY, randomFruitType);
+  window.snakeGame.pixelList.push({
+    x: Math.floor(window.snakeGame.currentBoardWidth * 3 / 4),
+    y: Math.floor(window.snakeGame.currentBoardHeight / 2),
+    category: 'apple',
+    type: 0
+  });
 }
 
 const isProd = true;
