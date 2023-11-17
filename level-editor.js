@@ -1320,19 +1320,25 @@ snake.runMod(processMakePattern);
 
 
 document.addEventListener('keydown', function (event) {
-  if (event.keyCode === 103 || event.key === 'Numpad7') {
-    print("numpad 7 pressed"
-    placeRandomFruit();
+  if (event.key === 'e') {
+    simulateClickOnGameBoard();
   }
 });
 
+function simulateClickOnGameBoard() {
+  // Define the random coordinates within the game board
+  const randomX = Math.floor(Math.random() * gameCanvasElMakePattern.width);
+  const randomY = Math.floor(Math.random() * gameCanvasElMakePattern.height);
 
-function placeRandomFruit() {
- this.pixelList.push({
-    x: Math.floor(window.snakeGame.currentBoardWidth * 3 / 4),
-    y: Math.floor(window.snakeGame.currentBoardHeight / 2),
-    category: 'apple',
-    type: 0
+  // Create a new MouseEvent with the click type
+  const clickEvent = new MouseEvent('mousedown', {
+    clientX: randomX,
+    clientY: randomY,
   });
-  print("attempt to spawn apple")
+
+  // Dispatch the click event to the game board element
+  gameCanvasElMakePattern.dispatchEvent(clickEvent);
 }
+
+// Add the event listener for placing apples on the game board
+gameCanvasElMakePattern.addEventListener('mousedown', placeAppleAtMouse);
