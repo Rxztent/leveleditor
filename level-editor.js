@@ -1321,6 +1321,7 @@ snake.runMod(processMakePattern);
 
 document.addEventListener('keydown', function (event) {
   if (event.key === 'e') {
+    print("test");
     simulateClickOnGameBoard();
   }
 });
@@ -1340,5 +1341,3 @@ function simulateClickOnGameBoard() {
   gameCanvasElMakePattern.dispatchEvent(clickEvent);
 }
 
-// Add the event listener for placing apples on the game board
-gameCanvasElMakePattern.addEventListener('mousedown', placeAppleAtMouse);
