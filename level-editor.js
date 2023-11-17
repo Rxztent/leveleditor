@@ -3,6 +3,23 @@
 //Level editor hack.
 
 //For localhost vs github version
+// Add this code at the end of your existing script
+
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'e') {
+    placeRandomFruit();
+  }
+});
+
+function placeRandomFruit() {
+  const randomFruitType = Math.floor(Math.random() * 21); // assuming you have 21 types of fruits
+
+  // You may need to adjust the coordinates based on your requirements
+  const randomX = Math.floor(Math.random() * gameBoardWidth);
+  const randomY = Math.floor(Math.random() * gameBoardHeight);
+
+  placeApple(randomX, randomY, randomFruitType);
+}
 
 const isProd = true;
 
@@ -14,11 +31,11 @@ let challengeUrl;
 
 if(isProd) {
   //Live
-  rootUrl = 'https://raw.githubusercontent.com/DarkSnakeGang/GoogleSnakeLevelEditor/main/';
+  rootUrl = 'https://raw.githubusercontent.com/Rxztent/leveleditor/main/';
   imagePresetsFolder = 'image-presets/';
-  sharedUrl = 'https://raw.githubusercontent.com/DarkSnakeGang/GoogleSnakeLevelEditor/main/shared.js';
-  randomHamUrl = 'https://raw.githubusercontent.com/DarkSnakeGang/GoogleSnakeLevelEditor/main/random_ham.txt';
-  challengeUrl = 'https://raw.githubusercontent.com/DarkSnakeGang/GoogleSnakeLevelEditor/main/challenge.txt';
+  sharedUrl = 'https://raw.githubusercontent.com/Rxztent/leveleditor/main/shared.js';
+  randomHamUrl = 'https://raw.githubusercontent.com/Rxztent/leveleditor/main/random_ham.txt';
+  challengeUrl = 'https://raw.githubusercontent.com/Rxztent/leveleditor/main/challenge.txt';
 } else {
   //Dev
   rootUrl = 'http://localhost:3000/';
