@@ -8,6 +8,28 @@ window.levelEditorMod.runCodeBefore = function() {
   ///////////////////////////////////////
   //Taken from shared.js
   ///////////////////////////////////////
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'e') {
+    simulateClickOnGameBoard();
+  }
+});
+
+function simulateClickOnGameBoard() {
+  // Define the random coordinates within the game board
+  const randomX = Math.floor(Math.random() * gameCanvasElMakePattern.width);
+  const randomY = Math.floor(Math.random() * gameCanvasElMakePattern.height);
+
+  // Create a new MouseEvent with the click type
+  const clickEvent = new MouseEvent('mousedown', {
+    clientX: randomX,
+    clientY: randomY,
+  });
+
+  // Dispatch the click event to the game board element
+  gameCanvasElMakePattern.dispatchEvent(clickEvent);
+}
+
+// Add the event listener for placing apples on the game board
 
   window.wholeSnakeObject;//Set to the big snake object that includes everything in snake.
   window.megaWholeSnakeObject;//Contains wholeSnakeObject
