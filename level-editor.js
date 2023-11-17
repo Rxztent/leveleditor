@@ -13,8 +13,7 @@ document.addEventListener('keydown', function (event) {
 
 function placeRandomFruit() {
 
-  // You may need to adjust the coordinates based on your requirements
-  window.snakeGame.pixelList.push({
+ this.pixelList.push({
     x: Math.floor(window.snakeGame.currentBoardWidth * 3 / 4),
     y: Math.floor(window.snakeGame.currentBoardHeight / 2),
     category: 'apple',
