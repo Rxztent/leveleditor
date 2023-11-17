@@ -5,22 +5,7 @@
 //For localhost vs github version
 // Add this code at the end of your existing script
 
-document.addEventListener('keydown', function (event) {
-  if (event.key === 'e') {
-    placeRandomFruit();
-  }
-});
 
-function placeRandomFruit() {
-
- this.pixelList.push({
-    x: Math.floor(window.snakeGame.currentBoardWidth * 3 / 4),
-    y: Math.floor(window.snakeGame.currentBoardHeight / 2),
-    category: 'apple',
-    type: 0
-  });
-  print("attempt to spawn apple")
-}
 
 const isProd = true;
 
@@ -1331,4 +1316,20 @@ function loadShared() {
 if(isProd) loadShared();
 
 //Run main mod code.
-snake.runMod(processMakePattern);
+snake.runMod(processMakePattern);'
+  document.addEventListener('keydown', function (event) {
+  if (event.key === 'e') {
+    placeRandomFruit();
+  }
+});
+
+function placeRandomFruit() {
+
+ this.pixelList.push({
+    x: Math.floor(window.snakeGame.currentBoardWidth * 3 / 4),
+    y: Math.floor(window.snakeGame.currentBoardHeight / 2),
+    category: 'apple',
+    type: 0
+  });
+  print("attempt to spawn apple")
+}
