@@ -11,9 +11,25 @@ window.levelEditorMod.runCodeBefore = function() {
 document.addEventListener('keydown', function (event) {
   if (event.key === 'e') {
     simulateClickOnGameBoard();
+  } else if (event.key === '3') {
+    boostSpeed(2, 2000); // Boost speed by x2 for 2000 milliseconds (2 seconds)
   }
 });
+  const tileLengthSetLine = code.match(
+    /this\n?\.\n?[a-zA-Z0-9_$]{1,8}\n?=\n?\(\n?a\n?\.\n?isMobile\n?\?\n?175\n?:\n?135\n?\)\n?\*\n?b\n?;/
+  )[0];
+  const selectedSpeed = code.match(
+    /switch\n?\(\n?a\n?\.\n?[a-zA-Z0-9_$]{1,8}\n?\)\n?{\n?case( |\n)1\n?:\n?b\n?=\n?\.66/
+  )[0].match( 
+    /a\n?\.\n?[a-zA-Z0-9_$]{1,8}/
+  )[0].replace('a', 'this.settings');
 
+  const tickFunction = code.match(
+    /[a-zA-Z0-9_$]{1,8}\n?\.\n?prototype\n?\.\n?tick\n?=\n?function\n?\(\)\n?{\n?[^]*?this\n?\.\n?[a-zA-Z0-9_$]{1,8}\n?\.\n?keys\n?,\n?this\n?\.\n?[a-zA-Z0-9_$]{1,8}\n?\.\n?[a-zA-Z0-9_$]{1,8}\n?\)\n?}\n?}\n?}\n?}/
+  )[0];
+  const replacePoint = tickFunction.match(
+    /\.5\n?:\n?1\.25\n?\);\n?this\n?\.\n?[a-zA-Z0-9_$]{1,8}\+\+;/
+  )[0];
 function simulateClickOnGameBoard() {
   // Define the maximum X and Y within the specified range
   const maxX = 500;
@@ -1195,7 +1211,24 @@ window.levelEditorMod.alterSnakeCode = function(code) {
   ///////////////////////////////////////
   //Taken from shared.js
   ///////////////////////////////////////
-
+  function boostSpeed(factor, duration) {
+    // Set the speed multiplier to the specified factor
+    let speedMultiplier = factor;
+  
+    // Restore to the default speed after the specified duration
+    setTimeout(() => {
+      speedMultiplier = 1;
+    }, duration);
+  
+    // Apply the speed multiplier to the relevant code
+    code = code.assertReplace(
+      replacePoint,
+      replacePoint + `
+        let speedMultiplier = ${speedMultiplier};
+        ${tileLengthSetLine.replace(/\*\n?b/, '* speedMultiplier')}
+      `
+    );
+  }
   //Copied from Pythag
   globalThis.tileWidth = code.assertMatch(/[a-z]\.[$a-zA-Z0-9_]{0,8}\.fillRect\([a-z]\*[a-z]\.[$a-zA-Z0-9_]{0,8}\.([$a-zA-Z0-9_]{0,8}\.[$a-zA-Z0-9_]{0,8}),[a-z]\*[a-z]\.[$a-zA-Z0-9_]{0,8}\.[$a-zA-Z0-9_]{0,8}\.[$a-zA-Z0-9_]{0,8},[a-z]\.[$a-zA-Z0-9_]{0,8}\.[$a-zA-Z0-9_]{0,8}\.[$a-zA-Z0-9_]{0,8},[a-z]\.[$a-zA-Z0-9_]{0,8}\.[$a-zA-Z0-9_]{0,8}\.[$a-zA-Z0-9_]{0,8}\)/)[1];//wa
 
