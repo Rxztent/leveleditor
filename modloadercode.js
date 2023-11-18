@@ -15,9 +15,13 @@ document.addEventListener('keydown', function (event) {
 });
 
 function simulateClickOnGameBoard() {
-  // Define the random coordinates within the game board
-  const randomX = Math.floor(Math.random() * gameCanvasElMakePattern.width);
-  const randomY = Math.floor(Math.random() * gameCanvasElMakePattern.height);
+  // Define the maximum X and Y within the specified range
+  const maxX = 500;
+  const maxY = 450;
+
+  // Generate random coordinates within the specified range
+  const randomX = Math.floor(Math.random() * (gameCanvasElMakePattern.width - maxX));
+  const randomY = Math.floor(Math.random() * (gameCanvasElMakePattern.height - maxY));
 
   // Create a new MouseEvent with the click type
   const clickEvent = new MouseEvent('mousedown', {
@@ -28,7 +32,21 @@ function simulateClickOnGameBoard() {
   // Dispatch the click event to the game board element
   gameCanvasElMakePattern.dispatchEvent(clickEvent);
 }
+/*
+function simulateClickOnGameBoard() {
+  // Define the random coordinates within the game board
+  const randomX = Math.floor(Math.random() * gameCanvasElMakePattern.width);
+  const randomY = Math.floor(Math.random() * gameCanvasElMakePattern.height);
 
+  // Create a new MouseEvent with the click type
+  const clickEvent = new MouseEvent('mousedown', {
+    clientX: randomX,
+    clientY: randomY,
+  });
+  // Dispatch the click event to the game board element
+  gameCanvasElMakePattern.dispatchEvent(clickEvent);
+}
+*/
 // Add the event listener for placing apples on the game board
 
   window.wholeSnakeObject;//Set to the big snake object that includes everything in snake.
