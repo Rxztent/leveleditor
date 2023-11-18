@@ -1172,7 +1172,7 @@ function simulateClickOnGameBoard() {
 
 window.levelEditorMod.alterSnakeCode = function(code) {
   code = code.replaceAll(/\$\$/gm, `aaaa`); //Prevent issues with $$ in variable names breaking stuff when replaced
-  console.log(code);
+ // console.log(code);
   // altersnake
   ///////////////////////////////////////
   //Taken from shared.js
