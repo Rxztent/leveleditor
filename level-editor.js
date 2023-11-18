@@ -1317,14 +1317,13 @@ if(isProd) loadShared();
 
 //Run main mod code.
 snake.runMod(processMakePattern);
-
-
+/*
 document.addEventListener('keydown', function (event) {
   if (event.key === 'e') {
     print("test");
     simulateClickOnGameBoard();
   }
-});
+}); */
 
 function simulateClickOnGameBoard() {
   // Define the random coordinates within the game board
